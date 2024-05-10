@@ -1,5 +1,5 @@
-first of firsts
-	link notes page to " Get Started " btn
+<!-- //first of firsts
+	//link notes page to " Get Started " btn -->
 
 when notes page loads-> 
 <!-- $(document).ready()=>{
