@@ -1,36 +1,23 @@
 const express = require('express')
 const router = require('express').Router()
+const notes = require('../db/db.json')
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils')
 const randomId = require('../helpers/random')
-const logs = require('../middleware/logs')
-// const noteAPI = require('../db/db.json')
-
-router.use(express.static('/public'))//not sure if needed here. it is server.js
-router.use(logs)
 
 //todo get db data then respond with json data
-// *right now it is only showing the homepage
-router.get('/', (req, res) => {
-	res.send('am i getting it yet')
+router.get('/', (req, res) => res.json(notes))
 
-	// *from mini, need to build out readFromFile
-	// readFromFile('db/db.json')
-	// .then((data)=>{
-	// 	res.json(JSON.parse(data))
-	// })
+working on it. selected note by id
+router.get('/:id', (req, res) => {
+	const noteId = req.params.id
+	readFromFile('../db/db.json')
+	.then((data) => JSON.parse(data))
+	.then((json) =>{
+		const selected = json.filter((note) => note.id === noteId)
+		console.log(`selected ${selected}`)
+		return selected.length > 0 ? res.json(selected) : res.json('no note to see')
+	})
 })
-
-// working on it. selected note by id
-// router.get('/:id', (req, res) => {
-// 	const noteId = req.params.id
-// 	readFromFile('../db/db.json')
-// 	.then((data) => JSON.parse(data))
-// 	.then((json) =>{
-// 		const selected = json.filter((note) => note.id === noteId)
-// 		console.log(`selected ${selected}`)
-// 		return selected.length > 0 ? res.json(selected) : res.json('no note to see')
-// 	})
-// })
 
 
 
