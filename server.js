@@ -1,18 +1,16 @@
 const express = require('express')
-const path = require('path')
-
-const api = require('./routes/notes.js')	//todo not complete
-const { logs } = require('./middleware/logs.js')//made but can customize more.
-
-const PORT = process.env.PORT || 3001
-
 const app = express()
+const path = require('path')
+const PORT = process.env.PORT || 3000
 
+const logs = require('./middleware/logs')//made but can customize more.not called anywhere either
+
+app.use(logs)
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use('./api', api)//routes is for the api portion. down below is the pages. i think
 app.use(express.static('public'))
+app.use('/api/notes', require('./routes/notes'))
 
 app.get('/notes', (req, res) => {
 	res.sendFile(path.join(__dirname, '/public/notes.html'))

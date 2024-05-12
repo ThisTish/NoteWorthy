@@ -5,7 +5,7 @@ const logs = (req, res, next) =>{
 			break
 		}
 		case 'POST':{
-			console.info(`${req.method} request to ${req.path}. You're not posting things to db!`)
+			console.info(`${req.method} request to ${req.path}. You're posting things to db!`)
 			break
 		}
 		case 'DELETE':{

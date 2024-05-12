@@ -1,0 +1,29 @@
+GET http://localhost:3000
+
+###
+
+
+GET http://localhost:3000/notes
+
+###
+
+
+GET http://localhost:3000/api/notes
+
+###
+
+GET http://localhost:3000/api/notes/3
+
+
+###
+
+
+POST http://localhost:3000/api/notes
+	Content-Type: application/json
+
+	{
+		"title":"Test Title",
+        "text":"Test text",
+        "id" : 1
+	}
+
