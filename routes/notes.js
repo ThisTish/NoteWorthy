@@ -4,19 +4,24 @@ const notes = require('../db/db.json')
 const { readFromFile, readAndAppend } = require('../helpers/fsUtils')
 const randomId = require('../helpers/random')
 
-//todo get db data then respond with json data
+//get db data then respond with json data
 router.get('/', (req, res) => res.json(notes))
 
-working on it. selected note by id
+//get a note by id
 router.get('/:id', (req, res) => {
-	const noteId = req.params.id
-	readFromFile('../db/db.json')
-	.then((data) => JSON.parse(data))
-	.then((json) =>{
-		const selected = json.filter((note) => note.id === noteId)
-		console.log(`selected ${selected}`)
-		return selected.length > 0 ? res.json(selected) : res.json('no note to see')
-	})
+	try{
+		const noteId = req.params.id
+		const selectedNote =  notes.find(note => note.id == noteId)
+		if(selectedNote){
+			const { title, text } = selectedNote
+			res.json(`${title} & ${text}`)
+		}else{
+			res.json(`Note ${noteId} cannot be found.`)
+		}
+	}catch(err){
+		console.error('Error', err)
+		res.status(404).json(err)
+	}
 })
 
 
