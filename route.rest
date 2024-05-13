@@ -26,3 +26,9 @@ POST http://localhost:3000/api/notes
         "text": "ninty"
 	}
 
+
+###
+
+DELETE  http://localhost:3000/api/notes/2
+
+

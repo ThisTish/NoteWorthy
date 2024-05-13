@@ -5,9 +5,7 @@ const appending = require('../helpers/append')
 
 //get db data then respond with json data
 router.get('/', (req, res) => res.json(notes))
-// router.get('/', (req, res) => {
-// 	readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)));
-// });
+
 
 //get a note by id
 router.get('/:id', (req, res) => {
@@ -25,6 +23,8 @@ router.get('/:id', (req, res) => {
 		res.status(404).json(err)
 	}
 })
+
+
 //  post new note to database and return new note
 router.post('/', (req, res) => {
 	// console.log(req.body)
@@ -44,8 +44,28 @@ router.post('/', (req, res) => {
 		appending('./db/db.json', notes)
 		res.json(notes)
 	}
-
-
 })
+
+
+router.delete('/:id', (req, res) => {
+	try{
+		const noteId = req.params.id
+		const trashNote =  notes.find(note => note.id == noteId)
+		if(trashNote){
+			const aliveNotes = notes.filter(note => note.id !== parseInt(req.params.id))
+			appending('./db/db.json', aliveNotes)
+			res.json({
+				msg: 'Note Deleted',
+				aliveNotes				
+			})
+		}else{
+			res.json(`Note ${noteId} cannot be found.`)
+		}
+	}catch(err){
+		console.error('Error', err)
+		res.status(404).json(err)
+	}
+})
+
 
 module.exports = router
