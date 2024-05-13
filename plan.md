@@ -6,7 +6,7 @@ when notes page loads->
 	clearSvdNotes()=>{
 		svdNotesArea.empty()
 	}
-todo	renderSvdNotes() notes for help below
+	renderSvdNotes() notes for help below
 	formClear()
 		titleArea.empty()
 		textArea.empty()
@@ -60,7 +60,7 @@ const notes = [
 ]
 
 
-<!--* renderSvdNotes() something like this -->
+<!--renderSvdNotes() something like this -->
 app.post('/api/notes', (req, res) =>{
 	console.info(`${req.method} request recived for new note)
 
@@ -95,9 +95,3 @@ app.post('/api/notes', (req, res) =>{
     res.status(500).json('Error in posting review')
   }
  )
-
-
-
-
-
-<!-- * working out append file -->

@@ -1,12 +1,10 @@
-const fs = require('fs')
 const router = require('express').Router()
 const notes = require('../db/db.json')
-// const { readFromFile, readAndAppend } = require('../helpers/fsUtils')
 const randomId = require('../helpers/random')
 const appending = require('../helpers/append')
 
 //get db data then respond with json data
-router.get('/', (req, res) => res.json(notes))
+router.get('/', (req, res) => console.log(res.json(notes)))
 
 //get a note by id
 router.get('/:id', (req, res) => {
@@ -24,7 +22,7 @@ router.get('/:id', (req, res) => {
 		res.status(404).json(err)
 	}
 })
-// todo post new note to database and return new note
+//  post new note to database and return new note
 router.post('/', (req, res) => {
 	// console.log(req.body)
 

@@ -1,3 +1,5 @@
+// const { response, json } = require("express");
+
 let noteForm;
 let noteTitle;
 let noteText;
@@ -28,14 +30,17 @@ const hide = (elem) => {
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+//todo 2nd half ln 40
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
-  });
+  })
+  // .then((response) => console.log(response))
 
+//todo 2nd half ln 56
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -44,7 +49,7 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note)
   });
-
+// todo EXTRA haven't made route yet.
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -82,7 +87,7 @@ const handleNoteSave = () => {
     renderActiveNote();
   });
 };
-
+// todo EXTRA haven't made delete route yet.
 // Delete the clicked note
 const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
@@ -114,7 +119,7 @@ const handleNewNoteView = (e) => {
   show(clearBtn);
   renderActiveNote();
 };
-
+// todo not working yet.
 // Renders the appropriate buttons based on the state of the form
 const handleRenderBtns = () => {
   show(clearBtn);
@@ -130,6 +135,7 @@ const handleRenderBtns = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
+  console.log(jsonNotes)
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -138,6 +144,7 @@ const renderNoteList = async (notes) => {
 
   // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
+    console.log(text)
     const liEl = document.createElement('li');
     liEl.classList.add('list-group-item');
 
