@@ -1,8 +1,9 @@
-const express = require('express')
+const fs = require('fs')
 const router = require('express').Router()
 const notes = require('../db/db.json')
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils')
+// const { readFromFile, readAndAppend } = require('../helpers/fsUtils')
 const randomId = require('../helpers/random')
+const appending = require('../helpers/append')
 
 //get db data then respond with json data
 router.get('/', (req, res) => res.json(notes))
@@ -23,31 +24,26 @@ router.get('/:id', (req, res) => {
 		res.status(404).json(err)
 	}
 })
+// todo post new note to database and return new note
+router.post('/', (req, res) => {
+	// console.log(req.body)
+
+	const { title, text } = req.body
+	const newNote ={
+		title,
+		text,
+		id : randomId()
+	}
+	// console.log(newNote)
+	if(!req.body){
+		res.error('Missing essential info', console.error(error))
+	}else{
+		notes.push(newNote)
+		console.log(notes)
+		appending('./db/db.json', notes)
+	}
 
 
-
-
-// 
-// router.post('/', (req, res) => {
-// 	console.log(req.body)
-
-// 	const { title, text } = req.body
-
-// 	if(req.body){	
-// 	const newNote ={
-// 		title,
-// 		text,
-// 		id : randomId()
-// 		}
-
-// 		readAndAppend(newNote, './db/db.json')
-// 		res.json('New Note Added')
-// 	}
-// 	else{
-// 		res.error('Error in adding note', console.error(error))
-// 	}
-
-
-// })
+})
 
 module.exports = router
