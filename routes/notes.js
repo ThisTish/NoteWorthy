@@ -6,7 +6,6 @@ const appending = require('../helpers/append')
 //get db data then respond with json data
 router.get('/', (req, res) => res.json(notes))
 
-
 //get a note by id
 router.get('/:id', (req, res) => {
 	try{
@@ -24,29 +23,24 @@ router.get('/:id', (req, res) => {
 	}
 })
 
-
 //  post new note to database and return new note
 router.post('/', (req, res) => {
-	// console.log(req.body)
-
 	const { title, text } = req.body
 	const newNote ={
 		title,
 		text,
 		id : randomId()
 	}
-	// console.log(newNote)
 	if(!req.body){
 		res.error('Missing essential info', console.error(error))
 	}else{
 		notes.push(newNote)
-		console.log(notes)
 		appending('./db/db.json', notes)
 		res.json(notes)
 	}
 })
 
-
+// deleting a certain note
 router.delete('/:id', (req, res) => {
 	try{
 		const noteId = req.params.id
@@ -66,6 +60,7 @@ router.delete('/:id', (req, res) => {
 		res.status(404).json(err)
 	}
 })
+
 
 
 module.exports = router

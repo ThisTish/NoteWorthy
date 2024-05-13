@@ -1,4 +1,3 @@
-const randomId = () => Math.floor(Math.random()*1000)
-// const selectedNote =  notes.find(note => note.id == noteId)
+const randomId = () => Math.floor(Math.random()*10000)
 
 module.exports = randomId
