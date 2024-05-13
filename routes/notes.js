@@ -41,6 +41,7 @@ router.post('/', (req, res) => {
 		notes.push(newNote)
 		console.log(notes)
 		appending('./db/db.json', notes)
+		res.json(notes)
 	}
 
 
