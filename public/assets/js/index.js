@@ -38,7 +38,8 @@ const getNotes = () =>
       'Content-Type': 'application/json'
     }
   })
-  // .then((response) => console.log(response))
+  console.log('get ran well')
+  // .then((response) => console.table(response))
 
 //todo 2nd half ln 56
 const saveNote = (note) =>
@@ -135,8 +136,11 @@ const handleRenderBtns = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  console.log(jsonNotes)
+  console.table(jsonNotes)
+  console.info(window.location.pathname)
   if (window.location.pathname === '/notes') {
+    // console.log('Selected elements:', noteList, noteListItems);
+
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
@@ -177,6 +181,7 @@ const renderNoteList = async (notes) => {
   }
 
   jsonNotes.forEach((note) => {
+    console.log(note.title)
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
 

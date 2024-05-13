@@ -4,7 +4,10 @@ const randomId = require('../helpers/random')
 const appending = require('../helpers/append')
 
 //get db data then respond with json data
-router.get('/', (req, res) => console.log(res.json(notes)))
+router.get('/', (req, res) => res.json(notes))
+// router.get('/', (req, res) => {
+// 	readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)));
+// });
 
 //get a note by id
 router.get('/:id', (req, res) => {
