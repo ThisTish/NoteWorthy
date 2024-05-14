@@ -9,6 +9,8 @@
 
 A simple site to save some notes.
 
+![alt text](assets/Landing-Page.png)                  ![alt text](assets/Notes-Page.png)
+
 ## 🔎 Table of Contents
 
 - [Installation](#installation)
