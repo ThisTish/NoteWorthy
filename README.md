@@ -54,7 +54,7 @@ While writing code for routes, I used the REST Client extension in VS Code. I al
 If you have any questions, feel free to contact me at:
 
 - *GitHub: [ThisTish](https://github.com/ThisTish)*
-- *Contact: [Email](tishthegoat@gmail.com)*
+- *Contact: [Email](tish.sirface@gmail.com)*
 
 ## 🪪 License <a id="license"></a>
 
